@@ -196,62 +196,124 @@ function togglePhysicalDetails(plan) {
 }
 
 // Form submission handling
-orderForm.addEventListener('submit', function(e) {
+orderForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Basic form validation
-    const requiredFields = orderForm.querySelectorAll('[required]');
+    // Get form data
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+    
+    // Show loading state
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    submitButton.textContent = 'Submitting...';
+    submitButton.disabled = true;
+    
+    try {
+        // Send data to Cloudflare Worker
+        const response = await fetch('https://your-worker.your-subdomain.workers.dev', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.textContent = 'Order submitted successfully! We will contact you soon.';
+            successMessage.style.color = 'var(--success-color)';
+            successMessage.style.marginTop = '1rem';
+            
+            // Insert success message
+            submitButton.parentNode.insertBefore(successMessage, submitButton.nextSibling);
+            
+            // Reset form
+            this.reset();
+            
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                modal.style.display = 'none';
+                successMessage.remove();
+            }, 3000);
+        } else {
+            throw new Error(result.message || 'Failed to submit order');
+        }
+    } catch (error) {
+        // Show error message
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = error.message || 'An error occurred. Please try again.';
+        errorMessage.style.color = 'var(--error-color)';
+        errorMessage.style.marginTop = '1rem';
+        
+        // Insert error message
+        submitButton.parentNode.insertBefore(errorMessage, submitButton.nextSibling);
+        
+        // Remove error message after 5 seconds
+        setTimeout(() => {
+            errorMessage.remove();
+        }, 5000);
+    } finally {
+        // Reset button state
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+    }
+});
+
+// Form validation
+function validateForm(form) {
+    const requiredFields = form.querySelectorAll('[required]');
     let isValid = true;
     
     requiredFields.forEach(field => {
-        if (!field.value) {
+        if (!field.value.trim()) {
             isValid = false;
             field.classList.add('error');
+            
+            // Add error message
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'field-error';
+            errorMessage.textContent = `${field.getAttribute('placeholder') || 'This field'} is required`;
+            errorMessage.style.color = 'var(--error-color)';
+            errorMessage.style.fontSize = '0.875rem';
+            errorMessage.style.marginTop = '0.25rem';
+            
+            // Remove existing error message if any
+            const existingError = field.nextElementSibling;
+            if (existingError && existingError.classList.contains('field-error')) {
+                existingError.remove();
+            }
+            
+            field.parentNode.insertBefore(errorMessage, field.nextSibling);
         } else {
             field.classList.remove('error');
+            // Remove error message if exists
+            const errorMessage = field.nextElementSibling;
+            if (errorMessage && errorMessage.classList.contains('field-error')) {
+                errorMessage.remove();
+            }
         }
     });
-
-    if (!isValid) {
-        alert('Please fill in all required fields');
-        return;
-    }
-
-    // Show loading state
-    const submitButton = orderForm.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
-    submitButton.textContent = 'Processing...';
-    submitButton.disabled = true;
-
-    // Form submission using FormSpree
-    const formData = new FormData(orderForm);
     
-    fetch(orderForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
+    return isValid;
+}
+
+// Add validation on input change
+orderForm.querySelectorAll('input, textarea, select').forEach(field => {
+    field.addEventListener('input', function() {
+        if (this.hasAttribute('required')) {
+            if (this.value.trim()) {
+                this.classList.remove('error');
+                const errorMessage = this.nextElementSibling;
+                if (errorMessage && errorMessage.classList.contains('field-error')) {
+                    errorMessage.remove();
+                }
+            }
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.ok) {
-            // Success message
-            alert('Thank you for your order! We will process it shortly.');
-            modal.style.display = 'none';
-            orderForm.reset();
-        } else {
-            // Error message
-            alert('There was an error submitting your order. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('There was an error submitting your order. Please try again.');
-    })
-    .finally(() => {
-        // Reset button state
-        submitButton.textContent = originalButtonText;
-        submitButton.disabled = false;
     });
 }); 

@@ -187,6 +187,24 @@
         .portfolio-item:hover .portfolio-overlay {
             transform: translateY(0);
         }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-color);
+        }
     </style>
 </head>
 <body>
@@ -199,7 +217,7 @@
                 <li><a href="tutorial.html">Tutorial</a></li>
                 <li><a href="prompts.html">Prompts</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="service.html">Custom Service</a></li>
+                <li><a href="service.html" class="active">Custom Service</a></li>
             </ul>
         </nav>
     </header>
@@ -222,7 +240,7 @@
                     <li>Basic customization options</li>
                     <li>Email delivery</li>
                 </ul>
-                <a href="#contact-form" class="btn btn-primary">Get Started</a>
+                <button class="btn-primary" onclick="sendEmail('Digital Package', '$19')">Get Started</button>
             </div>
 
             <div class="service-card">
@@ -235,7 +253,7 @@
                     <li>Worldwide shipping</li>
                     <li>30-day satisfaction guarantee</li>
                 </ul>
-                <a href="#contact-form" class="btn btn-primary">Get Started</a>
+                <button class="btn-primary" onclick="sendEmail('20cm Physical Figure', '$599')">Get Started</button>
             </div>
 
             <div class="service-card">
@@ -248,7 +266,7 @@
                     <li>Professional packaging</li>
                     <li>Worldwide shipping</li>
                 </ul>
-                <a href="#contact-form" class="btn btn-primary">Get Started</a>
+                <button class="btn-primary" onclick="sendEmail('30cm Physical Figure', '$699')">Get Started</button>
             </div>
 
             <div class="service-card">
@@ -358,9 +376,60 @@
         // Form submission handling
         document.getElementById('serviceForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add form submission logic here
-            alert('Thank you for your interest! We will contact you shortly.');
+            
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const packageSelect = document.getElementById('package');
+            const packageName = packageSelect.options[packageSelect.selectedIndex].text;
+            const description = document.getElementById('description').value;
+            
+            // 构建请求数据
+            const formData = {
+                name: name,
+                email: email,
+                package: packageName,
+                description: description
+            };
+            
+            // 发送数据到服务器
+            fetch('/api/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // 清空表单
+                    this.reset();
+                    // 显示成功消息
+                    alert('Thank you for your submission! We will contact you soon.');
+                } else {
+                    throw new Error(data.error || 'Failed to submit form');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Sorry, there was an error submitting your form. Please try again later.');
+            });
         });
+
+        function sendEmail(packageName, price) {
+            // 滚动到表单区域
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth' });
+            
+            // 选择对应的套餐
+            const packageSelect = document.getElementById('package');
+            for(let i = 0; i < packageSelect.options.length; i++) {
+                if(packageSelect.options[i].text.includes(packageName)) {
+                    packageSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
     </script>
 </body>
 </html> 
