@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore amazing ChatGPT action figures of celebrities. Vote for your favorites and discover unique AI-generated artwork.">
+    <title>Celebrity Action Figures Gallery | ChatGPT Action Figures</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ChatGPT Action Figures</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorial.html">Tutorial</a></li>
+                <li><a href="prompts.html">Prompts</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="gallery-content">
+        <h1>Celebrity Action Figures Gallery</h1>
+        <p class="section-description">Explore and vote for your favorite celebrity action figures created with ChatGPT</p>
+
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="actors">Actors</button>
+            <button class="filter-btn" data-category="musicians">Musicians</button>
+            <button class="filter-btn" data-category="athletes">Athletes</button>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Example Gallery Items -->
+            <div class="gallery-item" data-category="actors">
+                <img src="images/keanu-reeves.jpg" alt="Keanu Reeves Action Figure">
+                <div class="item-details">
+                    <h3>Keanu Reeves</h3>
+                    <p class="creator">Created by: JohnDoe</p>
+                    <div class="votes">
+                        <button class="vote-btn like" onclick="vote(this, 'like')">
+                            <span class="vote-count">245</span> 👍
+                        </button>
+                        <button class="vote-btn dislike" onclick="vote(this, 'dislike')">
+                            <span class="vote-count">12</span> 👎
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="musicians">
+                <img src="images/taylor-swift.jpg" alt="Taylor Swift Action Figure">
+                <div class="item-details">
+                    <h3>Taylor Swift</h3>
+                    <p class="creator">Created by: SwiftFan</p>
+                    <div class="votes">
+                        <button class="vote-btn like" onclick="vote(this, 'like')">
+                            <span class="vote-count">189</span> 👍
+                        </button>
+                        <button class="vote-btn dislike" onclick="vote(this, 'dislike')">
+                            <span class="vote-count">8</span> 👎
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="athletes">
+                <img src="images/michael-jordan.jpg" alt="Michael Jordan Action Figure">
+                <div class="item-details">
+                    <h3>Michael Jordan</h3>
+                    <p class="creator">Created by: BasketballFan</p>
+                    <div class="votes">
+                        <button class="vote-btn like" onclick="vote(this, 'like')">
+                            <span class="vote-count">312</span> 👍
+                        </button>
+                        <button class="vote-btn dislike" onclick="vote(this, 'dislike')">
+                            <span class="vote-count">15</span> 👎
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <h2>Submit Your Creation</h2>
+            <p>Have you created an amazing action figure? Share it with the community!</p>
+            <button class="submit-btn" onclick="showSubmitForm()">Submit Your Work</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We're passionate about AI-generated art and helping people create amazing action figures.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tutorial.html">Tutorial</a></li>
+                    <li><a href="prompts.html">Prompts</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@chatgptactionfigures.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ChatGPT Action Figures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const category = button.dataset.category;
+
+                galleryItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Voting functionality
+        function vote(button, type) {
+            const countElement = button.querySelector('.vote-count');
+            let count = parseInt(countElement.textContent);
+            
+            if (type === 'like') {
+                count++;
+            } else {
+                count--;
+            }
+            
+            countElement.textContent = count;
+            
+            // Disable both buttons after voting
+            const voteButtons = button.parentElement.querySelectorAll('.vote-btn');
+            voteButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+            });
+        }
+
+        // Submit form functionality
+        function showSubmitForm() {
+            // This would typically show a modal with a form
+            alert('Submit form functionality coming soon!');
+        }
+    </script>
+</body>
+</html> 

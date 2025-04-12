@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore different prompts and examples for creating ChatGPT action figures. Get inspired by various styles and designs.">
+    <title>ChatGPT Action Figure Prompts & Examples</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Prompts specific styles */
+        .prompts-container {
+            max-width: 1200px;
+            margin: 8rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .prompts-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .prompts-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .prompts-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .prompts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .prompt-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .prompt-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .prompt-content {
+            padding: 1.5rem;
+        }
+
+        .prompt-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .prompt-text {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .copy-button:hover {
+            background: var(--accent-color);
+        }
+
+        .prompt-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .filters {
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-button {
+            background: var(--secondary-color);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">ChatGPT Action Figure</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tutorial.html">Tutorial</a></li>
+                    <li><a href="prompts.html" class="active">Prompts</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="prompts-content">
+            <h1>Explore Different Prompts</h1>
+            <p class="section-description">Discover various prompts and see how they affect your ChatGPT action figure design. Click on any prompt to copy it to your clipboard.</p>
+
+            <div class="prompt-categories">
+                <div class="category">
+                    <h2>Classic Style</h2>
+                    <div class="prompt-grid">
+                        <div class="prompt-card">
+                            <img src="images/classic-style-1.jpg" alt="Classic style action figure example">
+                            <div class="prompt-details">
+                                <h3>Classic Action Figure</h3>
+                                <pre><code>Create a classic action figure of ChatGPT with a sleek, modern design. The figure should have a white and blue color scheme, with glowing circuit patterns. Include articulated joints and a base stand.</code></pre>
+                                <button class="copy-button" onclick="copyPrompt(this)">Copy Prompt</button>
+                            </div>
+                        </div>
+                        <!-- Add more classic style prompts -->
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2>Anime Style</h2>
+                    <div class="prompt-grid">
+                        <div class="prompt-card">
+                            <img src="images/anime-style-1.jpg" alt="Anime style action figure example">
+                            <div class="prompt-details">
+                                <h3>Anime Character</h3>
+                                <pre><code>Design a ChatGPT action figure in anime style with expressive features and dynamic pose. Include characteristic anime elements like large eyes and stylized hair, while maintaining the AI theme with circuit patterns and glowing effects.</code></pre>
+                                <button class="copy-button" onclick="copyPrompt(this)">Copy Prompt</button>
+                            </div>
+                        </div>
+                        <!-- Add more anime style prompts -->
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2>Cyberpunk Style</h2>
+                    <div class="prompt-grid">
+                        <div class="prompt-card">
+                            <img src="images/cyberpunk-style-1.jpg" alt="Cyberpunk style action figure example">
+                            <div class="prompt-details">
+                                <h3>Cyberpunk AI</h3>
+                                <pre><code>Create a cyberpunk-themed ChatGPT action figure with neon accents, mechanical parts, and holographic elements. Include glowing circuit patterns and a futuristic base with LED effects.</code></pre>
+                                <button class="copy-button" onclick="copyPrompt(this)">Copy Prompt</button>
+                            </div>
+                        </div>
+                        <!-- Add more cyberpunk style prompts -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="prompt-tips">
+                <h2>Tips for Customizing Prompts</h2>
+                <ul>
+                    <li>Add specific details about the pose you want</li>
+                    <li>Specify color schemes and materials</li>
+                    <li>Include details about accessories or special effects</li>
+                    <li>Mention the desired style or artistic direction</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@chatgptactionfigure.com</p>
+                <p>Follow us on social media for updates and inspiration</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tutorial.html">Tutorial</a></li>
+                    <li><a href="prompts.html">Prompts</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ChatGPT Action Figure. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyPrompt(button) {
+            const promptText = button.previousElementSibling.textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy Prompt';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html> 

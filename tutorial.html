@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Your ChatGPT Action Figure - Tutorial</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Learn how to create your own ChatGPT action figure with our step-by-step tutorial. Get expert tips and tricks for the best results.">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ChatGPT Action Figure</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tutorial.html" class="active">Tutorial</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="service.html">Services</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>How to Create Your ChatGPT Action Figure</h1>
+            <p>Follow our step-by-step guide to create your perfect AI action figure</p>
+        </section>
+
+        <section class="tutorial-content">
+            <div class="tutorial-step">
+                <h2>Step 1: Prepare Your Prompt</h2>
+                <p>Start by crafting a detailed prompt that describes your desired action figure. Include details about:</p>
+                <ul>
+                    <li>Character appearance and style</li>
+                    <li>Pose and expression</li>
+                    <li>Clothing and accessories</li>
+                    <li>Background or setting</li>
+                </ul>
+                <div class="example-prompt">
+                    <h3>Example Prompt:</h3>
+                    <pre><code>A professional action figure of a modern AI assistant, wearing a sleek black suit with blue LED accents. Standing in a confident pose with a friendly smile. High-quality 3D render, photorealistic style, studio lighting.</code></pre>
+                    <button class="copy-button" onclick="copyPrompt(this)">Copy Prompt</button>
+                </div>
+            </div>
+
+            <div class="tutorial-step">
+                <h2>Step 2: Generate Your Image</h2>
+                <p>Use an AI image generation tool (like DALL-E, Midjourney, or Stable Diffusion) to create your figure:</p>
+                <ul>
+                    <li>Input your carefully crafted prompt</li>
+                    <li>Select high-resolution output</li>
+                    <li>Generate multiple variations</li>
+                    <li>Choose the best result</li>
+                </ul>
+                <div class="tips">
+                    <h3>Pro Tips:</h3>
+                    <ul>
+                        <li>Use specific lighting terms for better results</li>
+                        <li>Include material descriptions (e.g., "metallic", "glossy")</li>
+                        <li>Specify the viewing angle</li>
+                        <li>Add style references if desired</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tutorial-step">
+                <h2>Step 3: Refine Your Design</h2>
+                <p>Once you have your base image, you can enhance it using image editing software:</p>
+                <ul>
+                    <li>Adjust colors and contrast</li>
+                    <li>Clean up any artifacts</li>
+                    <li>Add additional details</li>
+                    <li>Prepare for 3D printing (if applicable)</li>
+                </ul>
+            </div>
+
+            <div class="tutorial-step">
+                <h2>Step 4: Choose Your Output Format</h2>
+                <p>Decide how you want to bring your action figure to life:</p>
+                <div class="output-options">
+                    <div class="option">
+                        <h3>Digital Version</h3>
+                        <p>Perfect for social media, websites, or digital art collections</p>
+                    </div>
+                    <div class="option">
+                        <h3>3D Printed Figure</h3>
+                        <p>Transform your design into a physical collectible</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Need Help Creating Your Action Figure?</h2>
+            <p>Our team of experts can help bring your vision to life</p>
+            <a href="service.html" class="cta-button">Get Started</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: zhenliwang9@gmail.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ChatGPT Action Figure. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyPrompt(button) {
+            const promptText = button.previousElementSibling.textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy Prompt';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html> 
